@@ -3,7 +3,7 @@
         <el-container>
             <el-aside width="auto">
                 <!-- Aside -->
-                <x-menu></x-menu>
+                <x-menu :list="$router.options.routes" :isShowImage="true"></x-menu>
             </el-aside>
             <el-container>
                 <el-header>
@@ -12,8 +12,10 @@
                 </el-header>
                 <el-main>
                     <!-- main -->
-                    <!-- <main-table></main-table> -->
-                    <homePage></homePage>
+                    <!-- 面包屑导航 -->
+                    <breadcrumb></breadcrumb>
+                    <!-- 面包屑导航 end -->
+                    <router-view />
                 </el-main>
             </el-container>
         </el-container>
@@ -22,15 +24,14 @@
 
 <script>
 import xMenu from '../../components/menu.vue';
-import mainTable from '../../components/mainTable.vue';
 import navMenu from '../../components/navMenu.vue'
-import homePage from '@/components/user/homePage.vue';
+import breadcrumb from '@/components/common/breadcrumb.vue';
 export default {
     data() {
         return {};
     },
     components: {
-        xMenu, mainTable, navMenu,homePage
+        xMenu, navMenu,breadcrumb
     },
     methods: {
 
@@ -59,7 +60,7 @@ export default {
 }
 
 .el-main {
-    background-color: #e9eef3;
+    background-color: #fff;
     color: #333;
     text-align: center;
     line-height: 16px;

@@ -2,41 +2,25 @@
     <div class="homePage">
         <div class="welcome">
             <h2>欢迎回来！ CC</h2>
-            <div>
-                <ul>
-                    <li>
-                        <i class="el-icon-platform-eleme"></i>
-                        <div>
-                            <h2>线上总内容</h2>
-                            <h4>37777 w</h4>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="el-icon-platform-eleme"></i>
-                        <div>
-                            <h2>线上总内容</h2>
-                            <h4>37777 w</h4>
-                        </div>
-                    </li>
-                     <li>
-                        <i class="el-icon-platform-eleme"></i>
-                        <div>
-                            <h2>线上总内容</h2>
-                            <h4>37777 w</h4>
-                        </div>
-                    </li>
-                     <li>
-                        <i class="el-icon-platform-eleme"></i>
-                        <div>
-                            <h2>线上总内容</h2>
-                            <h4>37777 w</h4>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple">
+
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"></div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"></div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"></div>
+                </el-col>
+            </el-row>
         </div>
         <!-- echarts -->
-         <div ref="chart" style="width:50%;height:376px"></div>
+        <div ref="chart" style="width:50%;height:376px"></div>
     </div>
 </template>
 
@@ -59,18 +43,18 @@ export default {
             // 绘制图表
             myChart.setOption({
                 title: {
-                    text: 'ECharts 入门示例'
+                    text: 'XWFourm 发帖数量统计'
                 },
                 tooltip: {},
                 xAxis: {
-                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                    data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
                 },
                 yAxis: {},
                 series: [
                     {
-                        name: '销量',
+                        name: '发帖量',
                         type: 'bar',
-                        data: [5, 20, 36, 10, 10, 20]
+                        data: [5, 20, 36, 10, 10, 20,1]
                     }
                 ]
             });
@@ -80,25 +64,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.homePage{
-.welcome{
-    h2{
-        text-align: left;
-    }
-    ul{
-        display: flex;
-        justify-content: space-between;
-            align-items: center;
-
-        li{
-            display: flex;
-            align-items: center;
-            i{
-                font-size: 50px;
-                color: #007eff;
-            }
+.homePage {
+    .welcome {
+        h2 {
+            text-align: left;
         }
     }
 }
+
+.el-row {
+    margin-bottom: 20px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.el-col {
+    border-radius: 4px;
+}
+
+.bg-purple-dark {
+    background: #99a9bf;
+}
+
+.bg-purple {
+    background: #d3dce6;
+}
+
+.bg-purple-light {
+    background: #e5e9f2;
+}
+
+.grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+}
+
+.row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
 }
 </style>

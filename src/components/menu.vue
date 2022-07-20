@@ -3,7 +3,7 @@
         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="$store.state.isCollapse"
         router>
         <div class="aside_logo" v-if="isShowImage">
-            <img src="../assets/aside_logo.png" alt=""></img>
+            <img src="../assets/aside_logo.png" alt="" />
         </div>
         <div v-for="(item,index) in list" :key="index">
             <el-menu-item :index="item.path" v-if="!item.children" style="margin-left:30px;">
@@ -37,7 +37,7 @@ export default {
         }
     },
     created() {
-           console.log(this.list)
+           
     },
     methods: {
         handleOpen(key, keyPath) {

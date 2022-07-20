@@ -9,7 +9,7 @@
             <el-table-column prop="" label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" icon="el-icon-edit" circle @click="Edit(scope.row)"></el-button>
-                    <el-button type="danger" icon="el-icon-delete" circle @click="Del(scope.$index)"></el-button>
+                    <el-button type="danger" icon="el-icon-delete" circle @click="Del(scope.row.article_Id)"></el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -59,9 +59,13 @@ export default {
             _this.dialogFormVisible = true
             _this.row = row
         },
-        Del(index) {
+        Del(article_Id) {
              let _this = this;
-            // _this.tableData.splice(0,index)
+             let arr = _this.tableData.filter(p=>{
+                return article_Id == p.article_Id
+             })
+             let index = _this.tableData.indexOf(arr[0]);
+            _this.tableData.splice(index,1)
         },
     },
 };

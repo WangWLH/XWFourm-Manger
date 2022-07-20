@@ -49,6 +49,26 @@ module.exports = [
             },
         ]
     },
+    {
+        path: '',
+        name: 'banner',
+        component: () => import('../views/index/index.vue'),
+        meta: {
+            icon: 'el-icon-menu',
+            title: '轮播管理'
+        },
+        children:[
+            {
+                path: '/banner',
+                name: 'banner',
+                component: () => import('../views/Banner/Banner.vue'),
+                meta: {
+                    icon: 'el-icon-s-home',
+                    title: '轮播列表'
+                }
+            },
+        ]
+    },
     // {
     //     path: '*',
     //     name: '404',

@@ -3,7 +3,7 @@
         <el-container>
             <el-aside width="auto">
                 <!-- Aside -->
-                <x-menu :list="$router.options.routes" :isShowImage="true"></x-menu>
+                <x-menu :list="routerList" :isShowImage="true"></x-menu>
             </el-aside>
             <el-container>
                 <el-header>
@@ -33,8 +33,16 @@ export default {
     components: {
         xMenu, navMenu,breadcrumb
     },
-    methods: {
+    computed:{
+        routerList(){
+            return this.$router.options.routes[0].children
+        }
+    },
+    created(){
 
+    },
+    methods: {
+         
     },
 };
 </script>

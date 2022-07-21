@@ -6,11 +6,11 @@
             <img src="../assets/aside_logo.png" alt="" />
         </div>
         <div v-for="(item,index) in list" :key="index">
-            <el-menu-item :index="item.path" v-if="!item.children" style="margin-left:30px;">
+            <el-menu-item :index="item.path" v-if="!item.children">
                 <i :class="item.meta.icon"></i>
                 {{ item.meta.title }}
             </el-menu-item>
-             <el-submenu :index="item.path" v-else style="margin-left:10px;">
+             <el-submenu :index="item.path" v-else>
                 <template slot="title">
                      <i :class="item.meta.icon"></i>
                     <span>{{ item.meta.title }}</span>

@@ -1,12 +1,17 @@
 <template>
     <div class="articelList">
-        <articleTable :tableData="tableData"></articleTable>
+        <!-- <articleTable :tableData="tableData"></articleTable> -->
+        <XW-table 
+            :tableHead="tableHead"
+            :tableData="tableData"
+            >
+        </XW-table>
         <pagination 
-        :total="total"
-        :pageSizes="pageSizes"
-        @changeSize="changeSize"
-        @changeCurrent="changeCurrent"
-        :background="true"
+            :total="total"
+            :pageSizes="pageSizes"
+            @changeSize="changeSize"
+            @changeCurrent="changeCurrent"
+            :background="true"
         ></pagination>
     </div>
 </template>
@@ -14,6 +19,7 @@
 <script>
 import articleTable from './articleTable.vue'
 import pagination from '@/components/common/pagination.vue'
+import XWTable from '@/components/common/commonTable.vue';
 export default {
     data() {
         return {
@@ -38,12 +44,23 @@ export default {
             tableData: [],
             total:0,
             limit:2,
-            pageSizes:[]
+            pageSizes:[],
+            tableHead:[
+                { label: "发布日期", prop: "createdDate", align: "left", type: "date" },
+                { label: "创建人", prop: "creatUser", align: "left", type: "text" },
+                { label: "文章内容", prop: "content", align: "left", type: "text" },
+                { label: "点赞量",prop: "giveNums" ,align: "left", type: "text" },
+                { label: "评论量",prop: "commentNums" ,align: "left", type: "text" },
+                { label: "IP",prop: "IP" ,align: "left", type: "text" },
+                { label: "操作", align: "left", type: "button", isOperation: true },
+            ]
         }
     },
     components: {
+        XWTable,
         articleTable,
-        pagination
+        pagination,
+        
     },
     created() {
         let _this = this;
@@ -61,7 +78,6 @@ export default {
                 skip,
                 limit
             }).then(res => {
-                console.log('res', res)
                 if(res.data.code == 200){
                     _this.tableData = res.data.data
                     _this.total = res.data.count
@@ -75,7 +91,6 @@ export default {
         },
         changeCurrent(val){
             let _this = this;
-            console.log(val)
             _this.getTableList(val)
         }
         

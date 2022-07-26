@@ -5,7 +5,7 @@
              :class="$store.state.isCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
              :title="$store.state.isCollapse ? '展开' : '收起'" 
              @click="changeCollapse"></i>
-            <i class="el-icon-refresh-right"></i>
+            <i class="el-icon-refresh-right" @click="refresh"></i>
         </div>
         <div class="menu-right">
             <el-dropdown trigger="click" size="small" @command="handleClick">
@@ -25,6 +25,7 @@
 
 <script>
 export default {
+    inject:['reload'],
     data() {
         return {
 
@@ -37,6 +38,9 @@ export default {
         changeCollapse() {
             let _this = this;
             _this.$store.state.isCollapse = !_this.$store.state.isCollapse;
+        },
+        refresh(){
+             this.reload();
         }
     }
 }

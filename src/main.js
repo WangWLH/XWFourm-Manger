@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // 引入echarts
 import * as echarts from 'echarts'
 import axios from 'axios'
+import commonMethod from '../src/utils/commonMethod'
 axios.defaults.baseURL = "https://9e6d177d-9fc0-4815-919c-f5e2ff3cd736.bspapp.com/http"
 Vue.prototype.$http = axios;
 
@@ -15,6 +16,8 @@ Vue.prototype.$echarts = echarts
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
+
+Vue.prototype.$XWM = commonMethod;
 
 new Vue({
   router,

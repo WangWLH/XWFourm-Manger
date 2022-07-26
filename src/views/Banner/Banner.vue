@@ -12,19 +12,10 @@
         <XW-dialog
           :dialogFormVisible="dialogFormVisibles"
           :title="title"
+          :formRow="formRow"
+          :formData="formData"
           @cancelForm="cancelForm"
         >
-           <el-form :model="form">
-            <el-form-item label="活动名称" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="活动区域" :label-width="formLabelWidth">
-                <el-select v-model="form.region" placeholder="请选择活动区域">
-                    <el-option label="区域一" value="shanghai"></el-option>
-                    <el-option label="区域二" value="beijing"></el-option>
-                </el-select>
-            </el-form-item>
-        </el-form>
         </XW-dialog>
         <!-- 分页 -->
         <pagination
@@ -56,19 +47,15 @@ export default {
                 { label: "操作", align: "left", type: "button", isOperation: true },
             ],
             total:0,
-            form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
-            },
             dialogFormVisibles:false,
             formLabelWidth:'120px',
-            title:"修改轮播图"
+            title:"修改轮播图",
+            formRow:[
+                { type: 'input',label: "zIndex",prop: "zIndex",placeholder: "请填写zIndex", width: 12, disabled: false},
+                { type: 'input',label: "mLeft",prop: "mLeft",placeholder: "请填写mLeft",width: 12, disabled: false},
+                { type: "img",label: "轮播图",prop: "url",placeholder: "请选择选择图片",width: 24, disabled: false,options: ""},
+            ],
+            formData:{}
         }
     },
     components: {
@@ -87,24 +74,38 @@ export default {
               _this.total = res.data.data.length;
            })
         },
+        //编辑
         editRow(row){
             let _this = this;
-            _this.dialogFormVisibles = true
-            console.log(row)
+            // let IMGarr = [];  //存放图片的数组
+            _this.dialogFormVisibles = true //打开弹窗
+            // IMGarr.push({url:row.url}) //给数组添加图片
+            // row.url = IMGarr;  //赋值
+            _this.formData = row;
+            console.log('editRow',row)
         },
         delRow(row){
             let _this = this;
-            let arr = _this.tableData.filter(p=>{
-                return p._id == row._id;
-            })
-            let index = _this.tableData.indexOf(arr[0])
+            // let arr = _this.tableData.filter(p=>{
+            //     return p._id == row._id;
+            // })
+            // let index = _this.tableData.indexOf(arr[0])
+            let index = _this.tableData.findIndex(item => item._id == row._id);
             _this.tableData.splice(index,1)
         },
         changeSwitch(bool){
             console.log(bool)
         },
+        //弹窗点击取消
         cancelForm(){
-             this.dialogFormVisibles = false
+            this.dialogFormVisibles = false
+        },
+        //弹窗点击确定
+        saveForm(){
+            //请求接口
+            let _this = this;
+            _this.dialogFormVisibles = false;
+           
         }
     }
 }
